@@ -1,0 +1,6 @@
+#!/bin/bash
+# man : A script that seeks to emulate the man utility, by using lynx to access manpages.org
+
+query=$1
+
+lynx https://manpages.org/$query
