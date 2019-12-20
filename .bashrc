@@ -37,7 +37,7 @@ alias lynx="lynx -cfg ~/lynx.cfg"
 alias config="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # easy vnc setup
-alias vnc-start="x11vnc -usepw"
+alias vnc-start="x11vnc -usepw -display :0"
 
 # Location of bootloader config.
 BOOTCONF="/mnt/sda1/tce/boot/extlinux/extlinux.conf"
