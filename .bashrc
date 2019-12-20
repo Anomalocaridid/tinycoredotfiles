@@ -36,9 +36,16 @@ alias lynx="lynx -cfg ~/lynx.cfg"
 # Helps with managing dotfiles with a bare git repo.
 alias config="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
-# Sorts onboot.lst alphabetically
+# easy vnc setup
+alias vnc-start="x11vnc -usepw"
+
+# Location of bootloader config.
+BOOTCONF="/mnt/sda1/tce/boot/extlinux/extlinux.conf"
+
+# Location of onboot.lst
 ONBOOTLST="/mnt/sda1/tce/onboot.lst"
-ONBOOTBACKUP="$HOME/onboot.lst.backup"
+
+# Sorts onboot.lst alphabetically
 sort-onboot() {
 	if [[ -f $ONBOOTLST ]]; then
 		sort --ignore-case --output=$ONBOOTLST $ONBOOTLST
@@ -51,6 +58,7 @@ sort-onboot() {
 }
 
 # Backup and restore onboot.lst
+ONBOOTBACKUP="$HOME/onboot.lst.backup"
 backup-onboot() {
 	if [[ -f $ONBOOTLST ]]; then
 		cp $ONBOOTLST $ONBOOTBACKUP
