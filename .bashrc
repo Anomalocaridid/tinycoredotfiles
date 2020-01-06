@@ -17,8 +17,28 @@ COLOR1=$CYAN
 COLOR2=$PINK
 
 # Variables for prompt customization
-PS1="\[$COLOR1\]\u\[$BASE_COLOR\]@\[$COLOR2\]\h\[$BASE_COLOR\]:\w
-\[$BASE_COLOR\]\$> \[$RESET\]"
+PROMPT_COMMAND=__prompt_command
+
+# Dynamic prompt
+__prompt_command() {
+	local EXIT="$?"
+	local BASE_COLOR="\[$BASE_COLOR\]"
+	local COLOR1="\[$COLOR1\]"
+	local COLOR2="\[$COLOR2\]"
+	local RESET="\[\e[0m\]"
+
+	PS1=""
+
+	local ERROR="\[\e[1;31m\]"
+
+	# Changes prompt based on last command's error code.
+	if [[ $EXIT != 0 ]]; then
+		PS1+="$ERROR$EXIT$RESET "
+	fi
+
+	PS1+="$COLOR1\u$BASE_COLOR@$COLOR2\h$BASE_COLOR:\w\n$BASE_COLOR\$> $RESET"
+}
+
 PS2="\[$BASE_COLOR\] > \[$RESET\]"
 
 # ls always uses color
